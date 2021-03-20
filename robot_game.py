@@ -7,14 +7,21 @@ from os import system
 lenght = 20
 robotX = 5
 bombX  = 8
+hp     = 100 #percents
 
 
 while True:
  system( "clear" )
 
- if ( robotX == bombX ):
-  print( "❌❌❌ GAME OVER :-( ❌❌❌" )
-  break
+ 
+ if ( hp > 0 ):
+  if( robotX == bombX ):
+   while( hp > 0):
+     hp -= 20
+     print("Your health points has deteriorated by 20 percents. Left %d health points."%hp)
+ else:
+   print( "XXX GAME OVER :-( XXX" )
+   break
 
 
 # ########## DRAWING THE MAP ############
@@ -26,10 +33,10 @@ while True:
  while( x <= lenght ):
   
   if( x == robotX ):
-    print( "🤠", end = "" )
+    print( "R", end = "" )
  
   elif( x == bombX ):
-    print( "💣", end = "")
+    print( "B", end = "")
 
   else:
     print( "-", end = "" )
