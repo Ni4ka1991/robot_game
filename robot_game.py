@@ -4,24 +4,54 @@ from os import system
 #a - move left
 #d - move right
  
-lenght = 20
-robotX = 5
-bombX  = 8
-hp     = 100 #percents
+lenght     = 50
+robotX     = 2
+bombX      = 18
+bombY      = 34
+heartX     = 20
+heartY     = 50
+hp         = 100 #percents
+charge     = 100 #percents
+money_bagX = 6
+money_bagY = 33
+money = 0        #$
 
 
 while True:
  system( "clear" )
 
- 
- if ( hp > 0 ):
-  if( robotX == bombX ):
-   while( hp > 0):
-     hp -= 20
-     print("Your health points has deteriorated by 20 percents. Left %d health points."%hp)
+ if(( hp > 0 ) and ( charge > 0 )):
+  
+  if(( robotX == bombX ) or (robotX == bombY)):
+   hp -= 20
+  
+  elif(( robotX == heartX ) or ( robotX == heartY )):
+  
+   if(( hp < 100 ) and ( charge < 100 )):
+    hp += 20
+    if( charge <= 50 ):
+     charge += 50
+    else:
+     charge = 100
+
+  elif(( robotX == money_bagX ) or (robotX == money_bagY )):
+   money += 20
+   charge += 10
+
  else:
-   print( "XXX GAME OVER :-( XXX" )
-   break
+  if( charge == 0 ):
+   print( "Battery low. Game over" )
+  elif( hp == 0 ):
+   print( "Health points = 0. Game over" )
+  break
+  
+ 
+ print( "Your robot parameters:\n\nhp = %d"%hp + " %" )
+ print( "Battery Charging Indicator:" )
+ print( "%d"%charge + " %")
+ print( "=" * charge )
+ print( "Money = %d"%money + " $")
+
 
 
 # ########## DRAWING THE MAP ############
@@ -38,6 +68,21 @@ while True:
   elif( x == bombX ):
     print( "B", end = "")
 
+  elif( x == bombY ):
+    print( "B", end = "" )
+
+  elif( x == heartX ):
+    print( "H", end = "" )
+  
+  elif( x == heartY ):
+    print( "H", end = "" )
+  
+  elif( x == money_bagX ):
+    print( "M", end = "" )
+  
+  elif( x == money_bagY ):
+    print( "M", end = "" )
+  
   else:
     print( "-", end = "" )
   x += 1
@@ -49,12 +94,14 @@ while True:
 # ############# CONTROLS ##############
 
  direction = input( "dir (a/d/x) > " )
-
- if( direction == "a" ):
+ 
+ if(( direction == "a") and ( robotX > 0 )):
   robotX -= 1
+  charge -= 5
 
- if( direction == "d" ):
-  robotX += 1 
+ if(( direction == "d" ) and ( robotX < lenght )):
+  robotX += 1
+  charge -= 5
 
  if( direction == "x" ):
   system( "clear" )
