@@ -46,11 +46,11 @@ while True:
   break
   
  
- print( "Your robot parameters:\n\nhp = %d"%hp + " %" )
- print( "Battery Charging Indicator:" )
+ print( "Your robot parameters:\nhp = %d"%hp + " %" )
+ print( "\nBattery Charging Indicator:" )
  print( "%d"%charge + " %")
  print( "=" * charge )
- print( "Money = %d"%money + " $")
+ print( "\nMoney = %d"%money + " $")
 
 
 
@@ -96,16 +96,28 @@ while True:
  direction = input( "dir (a/d/x) > " )
  
  if(( direction == "a") and ( robotX > 0 )):
-  robotX -= 1
-  charge -= 5
+  if( robotX > 0 ): 
+   robotX -= 1
+   charge -= 5
+  else:
+   robotX = 1
+   print( "Change direction. You can moove only in right." )
+
+
 
  if(( direction == "d" ) and ( robotX < lenght )):
-  robotX += 1
-  charge -= 5
+  if( robotX < lenght ):
+   robotX += 1
+   charge -= 5
+  else:
+   robotX = lenght
+   print( "Change direction. You can moove only in left." )
 
  if( direction == "x" ):
   system( "clear" )
   print( "Thank you for playing!" )
   break
+
+
 
 # ###################################
