@@ -3,6 +3,8 @@ from os import system
 
 #a - move left
 #d - move right
+
+# DATA
  
 lenght     = 50
 robotX     = 2
@@ -16,6 +18,8 @@ money_bagX = 6
 money_bagY = 33
 money = 0        #$
 
+
+#LOGIC
 
 while True:
  system( "clear" )
@@ -45,7 +49,8 @@ while True:
    print( "Health points = 0. Game over" )
   break
   
- 
+ #robot parameters
+
  print( "Your robot parameters:\nhp = %d"%hp + " %" )
  print( "\nBattery Charging Indicator:" )
  print( "%d"%charge + " %")
@@ -95,14 +100,13 @@ while True:
 
  direction = input( "dir (a/d/x) > " )
  
- if(( direction == "a") and ( robotX > 0 )):
+ if(( direction == "a" ) and ( robotX > 0 )):
   if( robotX > 0 ): 
    robotX -= 1
    charge -= 5
   else:
-   robotX = 1
-   print( "Change direction. You can moove only in right." )
-
+   robotX = 0
+   print( "Change direction. You can move only in right." )
 
 
  if(( direction == "d" ) and ( robotX < lenght )):
@@ -111,12 +115,20 @@ while True:
    charge -= 5
   else:
    robotX = lenght
-   print( "Change direction. You can moove only in left." )
+   print( "Change direction. You can move only in left." )
 
  if( direction == "x" ):
   system( "clear" )
   print( "Thank you for playing!" )
   break
+
+
+
+
+
+
+
+
 
 
 
