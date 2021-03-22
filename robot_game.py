@@ -107,7 +107,7 @@ while True:
   else:
    robotX = 0
    print( "Change direction. You can move only in right." )
-
+   #input( "hit ENTER to continue" )
 
  if(( direction == "d" ) and ( robotX < lenght )):
   if( robotX < lenght ):
@@ -116,6 +116,7 @@ while True:
   else:
    robotX = lenght
    print( "Change direction. You can move only in left." )
+   #input( "hit ENTER to continue" )
 
  if( direction == "x" ):
   system( "clear" )
