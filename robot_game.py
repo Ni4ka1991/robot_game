@@ -100,22 +100,23 @@ while True:
 
  direction = input( "dir (a/d/x) > " )
  
- if(( direction == "a" ) and ( robotX > 0 )):
+ if( direction == "a" ):
   if( robotX > 0 ): 
    robotX -= 1
    charge -= 5
   else:
    robotX = 0
    print( "Change direction. You can move only in right." )
+   input( "hit ENTER to continue")
 
-
- if(( direction == "d" ) and ( robotX < lenght )):
+ if( direction == "d" ):
   if( robotX < lenght ):
    robotX += 1
    charge -= 5
   else:
    robotX = lenght
    print( "Change direction. You can move only in left." )
+   input( "hit ENTER to continue")
 
  if( direction == "x" ):
   system( "clear" )
